@@ -13,6 +13,10 @@ SAMPLE_INTERVAL = 0.1
 WINDOW_SECONDS = 1.0
 VIBRATION_TRANSITIONS_THRESHOLD = 1
 
+# Instelbare grenswaarden (seconden)
+RISICO_SECONDS = 3.0
+GEVAAR_SECONDS = 5.0
+
 # Pulslengtes in microseconden voor standaardservos
 SERVO_MIN_US = 500
 SERVO_MAX_US = 2400
@@ -132,9 +136,9 @@ try:
         update_vibration_state(transitions)
         duration_vibrations = get_vibration_duration()
 
-        if duration_vibrations >= 5:
+        if duration_vibrations >= GEVAAR_SECONDS:
             status = 'GEVAAR'
-        elif duration_vibrations >= 3:
+        elif duration_vibrations >= RISICO_SECONDS:
             status = 'RISICO'
         else:
             status = 'VEILIG'
